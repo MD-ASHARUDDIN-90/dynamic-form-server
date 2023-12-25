@@ -4,8 +4,8 @@ import { DynamicFormModel } from "../../models/formsModel/formModel";
 
 export const getAllForms = async(data : any)=>{
     try {
-        console.log(data);
-        return
+      const result = await DynamicFormModel.find({}).lean();
+        return result
     } catch (error) {
         throwError(error)
     }
