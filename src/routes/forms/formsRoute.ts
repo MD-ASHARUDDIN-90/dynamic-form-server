@@ -4,8 +4,8 @@ import { createForm, getAllForms } from '../../controller/forms/formsController'
 
 const router = Router();
 
-router.post('/', (req, res) => {
-	res.handle(getAllForms, [req.body]);
+router.get('/', (req, res) => {
+	res.handle(getAllForms , [req.query], 'list');
 });
 router.post('/create', (req, res) => {
 	res.handle(createForm, [req.body]);
