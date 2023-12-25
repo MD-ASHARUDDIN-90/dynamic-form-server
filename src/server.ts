@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import { connectDb } from './db';
 import formsRoutes from "./routes/forms/formsRoute"
 import { useBodyParser, useEnhancedExpress } from './helper/server-helper';
+import cors from "cors"
 
 
 dotenv.config();
@@ -16,6 +17,9 @@ connectDb();
 
 // Use Morgan middleware for logging HTTP requests
 app.use(morgan('tiny'));
+
+//enable cors
+app.use(cors());
 
 // Use Enhanced Express Middleware with Express Application
 useEnhancedExpress(app);
