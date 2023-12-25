@@ -1,0 +1,10 @@
+node_modules
+uploads
+upload
+public
+dist
+local
+release
+debug
+config*.json
+.DS_Store
