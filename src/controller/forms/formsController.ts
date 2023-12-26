@@ -3,10 +3,33 @@ import { DynamicFormModel } from '../../models/formsModel/formModel'
 
 export const getAllForms = async (data: any) => {
 	try {
-		const result = await DynamicFormModel.find({}).lean()
-		return result
+		const { page, limit } = data
+		const skip = (page - 1) * limit
+
+		// Query to get the total count
+		const total = await DynamicFormModel.countDocuments({})
+
+		const result = await DynamicFormModel.find({})
+			.skip(skip)
+			.limit(Number(limit))
+			.lean()
+
+		return {
+			data: result,
+			total: total,
+			page: page
+		}
 	} catch (error) {
 		throwError(error)
+	}
+}
+
+export const getForm = async (id: string) => {
+	try {
+		const result = await DynamicFormModel.findById(id)
+		return result
+	} catch (error) {
+		throwError(500, error)
 	}
 }
 
